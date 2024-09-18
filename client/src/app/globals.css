@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  @apply box-border;
+}
+
+html,
+body,
+#root,
+.app {
+  @apply h-full w-full font-sans;
+}
