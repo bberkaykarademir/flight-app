@@ -1,5 +1,5 @@
-import Image from "next/image";
+import BookFlight from "@/app/book-flight/page";
 
 export default function Home() {
-  return <main>hello</main>;
+  return <BookFlight />;
 }
