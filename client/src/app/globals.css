@@ -13,7 +13,7 @@
   body,
   #root,
   .app {
-    @apply h-full w-full font-sans;
+    @apply h-full w-full font-sans text-text;
   }
 }
 
@@ -32,6 +32,14 @@
 
   .overlayPending {
     @apply bg-transparent fixed inset-0 z-[100] h-full w-full;
+  }
+
+  .inputWrapper-focus {
+    @apply focus-within:outline focus-within:outline-1 focus-within:outline-primary;
+  }
+
+  .inputWrapper input:not([type="checkbox"]):not([type="radio"]) {
+    @apply bg-transparent outline-none text-text;
   }
 
   .loader {

@@ -14,8 +14,7 @@ const config: Config = {
           light: "#E6DFEA",
         },
         text: {
-          DEFAULT: "#000000",
-          light: "#333333",
+          DEFAULT: "#333333",
           muted: "#B5B5B5",
           inverse: "#FFFFFF",
         },
@@ -27,6 +26,14 @@ const config: Config = {
           DEFAULT: "#22157A",
           light: "#712AA4",
         },
+      },
+      height: {
+        18: "72px",
+        68: "272px",
+      },
+      width: {
+        18: "72px",
+        68: "272px",
       },
     },
   },
