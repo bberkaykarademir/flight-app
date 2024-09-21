@@ -13,8 +13,12 @@ const config: Config = {
           DEFAULT: "#501A93",
           light: "#E6DFEA",
         },
+        secondary: {
+          DEFAULT: "#5493f7"
+        },
         text: {
           DEFAULT: "#333333",
+          light: "#585858",
           muted: "#B5B5B5",
           inverse: "#FFFFFF",
         },
@@ -26,13 +30,23 @@ const config: Config = {
           DEFAULT: "#22157A",
           light: "#712AA4",
         },
+        border: {
+          DEFAULT: "#DCDCDC",
+        },
+        placeholder: {
+          DEFAULT: "#D9D9D9",
+        },
       },
       height: {
         18: "72px",
+        22: "88px",
+        26: "104px",
         68: "272px",
       },
       width: {
         18: "72px",
+        22: "88px",
+        26: "104px",
         68: "272px",
       },
     },

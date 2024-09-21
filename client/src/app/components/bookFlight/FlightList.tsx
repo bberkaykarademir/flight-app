@@ -41,7 +41,7 @@ const FlightList = () => {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-lg text-primary font-bold">Price: $200</span>
-            <span className="text-[#585858] font-semibold text-sm">
+            <span className="text-text-light font-semibold text-sm">
               Round Trip
             </span>
           </div>
@@ -89,7 +89,7 @@ const FlightList = () => {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-lg text-primary font-bold">Price: $200</span>
-            <span className="text-[#585858] font-semibold text-sm">
+            <span className="text-text-light font-semibold text-sm">
               Round Trip
             </span>
           </div>
