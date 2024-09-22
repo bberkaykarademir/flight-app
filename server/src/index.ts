@@ -6,6 +6,10 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
+/* ROUTE IMPORTS */
+import externalFlightRoutes from "./routes/externalFlightRoutes";
+import flightsRoutes from "./routes/flightsRoutes";
+
 /* CONFIGURATIONS */
 dotenv.config();
 export const app = express();
@@ -18,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 /* ROUTES */
+app.use("/external", externalFlightRoutes); // http://localhost:8000/external
+app.use("/flights", flightsRoutes); // http://localhost:8000/flights
 
 /* SERVER */
 
