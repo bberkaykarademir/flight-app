@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import TanstackProvider from "./components/TanstackProvider";
 
 export const metadata: Metadata = {
   title: "Flight App",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-background">{children}</body>
+      <body className="bg-background">
+        <TanstackProvider>{children}</TanstackProvider>
+      </body>
     </html>
   );
 }

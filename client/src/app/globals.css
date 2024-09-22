@@ -46,3 +46,22 @@
     @apply border-2 border-transparent rounded-full w-5 h-5 border-t-2 border-t-white animate-spin;
   }
 }
+
+.skeleton {
+  height: 232px;
+  background-image: linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc),
+      linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc), linear-gradient(#ccc, #ccc);
+  animation: skeleton 1s infinite;
+  background-position: 0 0, 0 60px, 0 95px, 0 130px, 0 165px, 0 220px, 0 250px, 0 280px, 0 310px, 0 350px, 40% 350px, 0 380px, 60% 380px;
+  background-repeat: no-repeat;
+}
+
+@keyframes skeleton {
+  0%,
+  100% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0.5;
+  }
+}

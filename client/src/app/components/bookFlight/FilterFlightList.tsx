@@ -22,7 +22,7 @@ const FilterFlightList = () => {
   ];
 
   return (
-    <section className="flex flex-col gap-6 pt-2 text-sm">
+    <section className="flex flex-col gap-6 pt-2 text-sm overflow-hidden">
       <div className="flex flex-col gap-3">
         <span className="font-bold">Sort by</span>
         <select className="w-56 h-9 flex inputWrapper-focus px-2 bg-background-light rounded-md">
@@ -63,9 +63,9 @@ const FilterFlightList = () => {
           </li>
         </ul>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 overflow-hidden">
         <span className="font-bold">Airlines Included</span>
-        <ul className="flex flex-col gap-[10px] max-h-52 overflow-y-auto">
+        <ul className="flex flex-col gap-[10px] overflow-y-auto">
           {airlines.map((airline, index) => (
             <li key={index} className="flex items-center justify-between">
               <div className="flex items-center gap-2">

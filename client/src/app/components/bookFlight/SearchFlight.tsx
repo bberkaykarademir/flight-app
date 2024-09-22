@@ -1,8 +1,12 @@
+"use client";
+import { useFiltersStore } from "@/app/state/filtersStore";
 import React from "react";
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoAirplaneSharp } from "react-icons/io5";
 
 const SearchFlight = () => {
+  const setFilters = useFiltersStore((state) => state.setFilters);
+
   return (
     <section className="flex flex-col gap-5 bg-background-light p-6 rounded-xl">
       <div className="flex items-center justify-between">
@@ -39,7 +43,10 @@ const SearchFlight = () => {
           </div>
         </div>
       </div>
-      <button className="w-fit bg-primary text-text-inverse font-semibold px-4 py-[10px] rounded-md">
+      <button
+        onClick={() => setFilters({ roundTrip: "Round Trip" })}
+        className="w-fit bg-primary text-text-inverse font-semibold px-4 py-[10px] rounded-md"
+      >
         Show flights
       </button>
     </section>
