@@ -67,61 +67,64 @@ const appId = process.env.APP_ID as string;
 const appKey = process.env.APP_KEY as string;
 
 export async function fetchExternalFlightData(filters?: {
-    sort?: string;
-    fromDateTime?: string;
-    toDateTime?: string;
-  }): Promise<IExternalFlightResponse | ErrorResponse> {
-    try {
-      const params: Record<string, string> = {
-        includedelays: "false",
-        page: "0",
-        sort: filters?.sort || "+scheduleTime", 
-      };
-  
-      if (filters?.fromDateTime) {
-        params.fromDateTime = filters.fromDateTime;
+  sort?: string;
+  fromDateTime?: string;
+  toDateTime?: string;
+}): Promise<IExternalFlightResponse | ErrorResponse> {
+  try {
+    const params: Record<string, string> = {
+      includedelays: "false",
+      page: "0",
+    };
+
+    if (filters?.sort !== "-scheduleTime") {
+      params.sort = "+scheduleTime";
+    }
+
+    if (filters?.fromDateTime) {
+      params.fromDateTime = filters.fromDateTime;
+    }
+
+    if (filters?.toDateTime) {
+      params.toDateTime = filters.toDateTime;
+    }
+
+    const response = await axios.get(
+      "https://api.schiphol.nl/public-flights/flights",
+      {
+        headers: {
+          Accept: "application/json",
+          app_id: appId,
+          app_key: appKey,
+          ResourceVersion: "v4",
+        },
+        params,
       }
-  
-      if (filters?.toDateTime) {
-        params.toDateTime = filters.toDateTime;
-      }
-  
-      const response = await axios.get(
-        "https://api.schiphol.nl/public-flights/flights",
-        {
-          headers: {
-            Accept: "application/json",
-            app_id: appId,
-            app_key: appKey,
-            ResourceVersion: "v4",
-          },
-          params, 
-        }
-      );
-  
-      return response.data;
-    } catch (error: any) {
-      if (axios.isAxiosError(error)) {
-        const status = error.response?.status;
-        const errorData = error.response?.data;
-  
-        if (errorData && errorData.parameters && errorData.parameters.errors) {
-          return {
-            status: status,
-            error: errorData.type || "API Error",
-            requestId: errorData.parameters.requestId,
-            details: errorData.parameters.errors,
-          };
-        }
-  
+    );
+
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      const errorData = error.response?.data;
+
+      if (errorData && errorData.parameters && errorData.parameters.errors) {
         return {
           status: status,
-          error: errorData?.message || "Failed to fetch flight data",
-        };
-      } else {
-        return {
-          error: "An unexpected error occurred",
+          error: errorData.type || "API Error",
+          requestId: errorData.parameters.requestId,
+          details: errorData.parameters.errors,
         };
       }
+
+      return {
+        status: status,
+        error: errorData?.message || "Failed to fetch flight data",
+      };
+    } else {
+      return {
+        error: "An unexpected error occurred",
+      };
     }
   }
+}

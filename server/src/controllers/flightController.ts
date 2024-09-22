@@ -38,7 +38,8 @@ export async function getFlights(req: Request, res: Response) {
       toDateTime: req.query.toDateTime as string,
     });
 
-    const { departureCity, arrivalCity, roundTrip, airline, stops } = req.query;
+    const { departureCity, arrivalCity, roundTrip, airline, stops } =
+      req.query;
 
     if ("flights" in externalData) {
       const enrichedFlights = (
@@ -88,6 +89,12 @@ export async function getFlights(req: Request, res: Response) {
           (roundTrip ? flight.roundTrip === roundTrip : true)
         );
       });
+
+      if (req.query.sort === "lowestPrice") {
+        filteredFlights.sort((a, b) => a.price - b.price);
+      } else if (req.query.sort === "highestPrice") {
+        filteredFlights.sort((a, b) => b.price - a.price);
+      }
 
       res.json(filteredFlights);
     } else {
