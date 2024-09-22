@@ -38,6 +38,8 @@ export async function getFlights(req: Request, res: Response) {
       toDateTime: req.query.toDateTime as string,
     });
 
+    const { departureCity, arrivalCity, roundTrip, airline, stops } = req.query;
+
     if ("flights" in externalData) {
       const enrichedFlights = (
         externalData as IExternalFlightResponse
@@ -51,6 +53,7 @@ export async function getFlights(req: Request, res: Response) {
         const randomStops =
           stopsOptions[Math.floor(Math.random() * stopsOptions.length)];
         const randomPrice = Math.floor(Math.random() * (300 - 200 + 1)) + 200;
+        const randomRoundTrip = Math.random() < 0.5 ? "Round Trip" : "One Way";
 
         return {
           flightName: flight.flightName,
@@ -71,10 +74,22 @@ export async function getFlights(req: Request, res: Response) {
           airline: randomAirline,
           price: randomPrice,
           stops: randomStops,
+
+          roundTrip: randomRoundTrip,
         };
       });
 
-      res.json(enrichedFlights);
+      const filteredFlights = enrichedFlights.filter((flight) => {
+        return (
+          (departureCity ? flight.departureCity === departureCity : true) &&
+          (arrivalCity ? flight.arrivalCity === arrivalCity : true) &&
+          (airline ? flight.airline === airline : true) &&
+          (stops ? flight.stops === stops : true) &&
+          (roundTrip ? flight.roundTrip === roundTrip : true)
+        );
+      });
+
+      res.json(filteredFlights);
     } else {
       res.status(500).json({
         message: "Failed to fetch valid flight data",
