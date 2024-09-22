@@ -63,7 +63,7 @@ const FlightList = () => {
                     {getTimeDifference(
                       flight.departureDateTime,
                       flight.arrivalDateTime
-                    )}{" "}
+                    )}
                     ({flight.stops})
                   </span>
                 </div>

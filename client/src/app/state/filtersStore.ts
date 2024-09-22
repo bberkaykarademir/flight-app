@@ -3,6 +3,8 @@ import { create } from "zustand";
 export interface Filters {
   departureCity: string;
   arrivalCity: string;
+  departureDateTime: string;
+  arrivalDateTime: string;
   roundTrip: string;
   airline: string;
   stops: string;
