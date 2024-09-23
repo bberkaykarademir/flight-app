@@ -3,11 +3,13 @@ import { create } from "zustand";
 export interface Filters {
   departureCity: string;
   arrivalCity: string;
-  departureDateTime: string;
-  arrivalDateTime: string;
+  fromDateTime: string;
+  toDateTime: string;
   roundTrip: string;
   airline: string;
   stops: string;
+  sort: string;
+  arrivalAmPm: string;
 }
 
 export interface FiltersState {
@@ -20,11 +22,12 @@ export const useFiltersStore = create<FiltersState>((set) => ({
     sort: "lowestPrice",
     departureCity: "",
     arrivalCity: "",
-    departureDateTime: "",
-    arrivalDateTime: "",
+    fromDateTime: "",
+    toDateTime: "",
     roundTrip: "",
     airline: "",
     stops: "",
+    arrivalAmPm: "",
   },
   setFilters: (updatedFilters) =>
     set((state) => ({

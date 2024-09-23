@@ -33,3 +33,13 @@ export function getTimeDifference(
   }
   return result;
 }
+
+export function convertToISOWithTimezone(dateString: string) {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  const formattedDate = `${date.getFullYear()}-${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}T00:00:00`;
+  console.log(formattedDate);
+  return formattedDate;
+}

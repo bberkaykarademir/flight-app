@@ -8,13 +8,6 @@ import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu";
 import { formatTo12Hour, getTimeDifference } from "@/app/utils/dateParser";
 
 const FlightList = () => {
-  // let data = await fetch("http://localhost:8000/flights");
-  // let flights = await data.json();
-  // console.log(flights);
-
-  // let data = await getFlights({});
-  // console.log(data);
-
   const filters = useFiltersStore((state) => state.filters);
 
   const { data, error, isLoading, refetch } = useQuery({
@@ -22,6 +15,7 @@ const FlightList = () => {
     queryFn: () => getFlights(filters),
     refetchOnWindowFocus: false,
     enabled: !!filters.roundTrip,
+    retry: 0,
   });
 
   return (
@@ -32,7 +26,7 @@ const FlightList = () => {
           <div className="skeleton bg-placeholder rounded-xl"></div>
         </div>
       )}
-      {error && <p>Error: {error.message}</p>}
+      {error && <p>Error: Failed to fetch valid flight data</p>}
       {data && data.length === 0 && <p>No flights found</p>}
       {data &&
         data.map((flight) => (

@@ -1,13 +1,13 @@
 "use client";
 import { useFiltersStore } from "@/app/state/filtersStore";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoAirplaneSharp } from "react-icons/io5";
 import { IoMdCalendar } from "react-icons/io";
+import { convertToISOWithTimezone } from "@/app/utils/dateParser";
 
 const SearchFlight = () => {
   const setFilters = useFiltersStore((state) => state.setFilters);
-  const filters = useFiltersStore((state) => state.filters);
 
   const cities = [
     "New York",
@@ -29,19 +29,12 @@ const SearchFlight = () => {
   const [arrivalDateTime, setArrivalDateTime] = useState("");
 
   const showFlights = () => {
-    console.log(
-      roundTrip,
-      departureCity,
-      arrivalCity,
-      departureDateTime,
-      arrivalDateTime
-    );
     setFilters({
       roundTrip,
       departureCity,
       arrivalCity,
-      departureDateTime,
-      arrivalDateTime,
+      fromDateTime: convertToISOWithTimezone(departureDateTime),
+      toDateTime: convertToISOWithTimezone(arrivalDateTime),
     });
   };
 
@@ -81,11 +74,10 @@ const SearchFlight = () => {
             <FaPlaneDeparture fill="#501a93" className="w-5 h-5" />
             <select
               className="w-full h-full py-2 outline-none"
+              defaultValue={""}
               onChange={(e) => setDepartureCity(e.currentTarget.value)}
             >
-              <option value="" selected>
-                All Departure Cities
-              </option>
+              <option value="">All Departure Cities</option>
               {cities.map((city, index) => (
                 <option key={index} value={city}>
                   {city}
@@ -97,11 +89,10 @@ const SearchFlight = () => {
             <FaPlaneArrival fill="#501a93" className="w-5 h-5" />
             <select
               className="w-full h-full py-2 outline-none rounded-r-xl"
+              defaultValue={""}
               onChange={(e) => setArrivalCity(e.currentTarget.value)}
             >
-              <option value="" selected>
-                All Arrival Cities
-              </option>
+              <option value="">All Arrival Cities</option>
               {cities.map((city, index) => (
                 <option key={index} value={city}>
                   {city}
