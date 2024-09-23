@@ -4,7 +4,7 @@ import MyFlightsList from "@/app/components/myFlights/MyFlightsList";
 
 const MyFlights = () => {
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col pb-4">
       <FilterMyFlights />
       <MyFlightsList />
     </main>

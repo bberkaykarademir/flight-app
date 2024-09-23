@@ -1,13 +1,15 @@
 "use client";
-import { getFlights } from "@/app/api/flights";
+import { Flight, getFlights } from "@/app/api/flights";
+import { bookFlight } from "@/app/api/myFlights";
 import { useFiltersStore } from "@/app/state/filtersStore";
-import { useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
 import { IoAirplaneSharp } from "react-icons/io5";
 import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu";
 import { formatTo12Hour, getTimeDifference } from "@/app/utils/dateParser";
-
+import { useRouter } from "next/navigation";
 const FlightList = () => {
+  const router = useRouter();
   const filters = useFiltersStore((state) => state.filters);
   const resetFilters = useFiltersStore((state) => state.resetFilters);
 
@@ -22,6 +24,22 @@ const FlightList = () => {
     enabled: !!filters.roundTrip,
     retry: 0,
   });
+
+  const {
+    data: bookedFlight,
+    error: bookError,
+    isPending: isBooking,
+    mutateAsync: book,
+  } = useMutation({
+    mutationFn: (flight: Flight) => bookFlight(flight),
+    onSuccess: () => {
+      setTimeout(() => {
+        router.push("/my-flights");
+      }, 1000);
+    },
+  });
+
+  const [bookingFlightNumber, setBookingFlightNumber] = useState(-1);
 
   return (
     <section className="flex flex-col gap-5 flex-grow overflow-y-auto">
@@ -92,8 +110,20 @@ const FlightList = () => {
                   {flight.roundTrip}
                 </span>
               </div>
-              <button className="absolute right-0 bottom-0 rounded-br-xl rounded-tl-xl py-6 px-10 bg-primary text-text-inverse font-semibold">
-                Book Flight
+              <button
+                onClick={async () => {
+                  setBookingFlightNumber(flight.flightNumber);
+                  await book(flight);
+                }}
+                className="absolute  right-0 bottom-0 flex items-center justify-center rounded-br-xl rounded-tl-xl w-40 h-18 bg-primary text-text-inverse font-semibold"
+              >
+                {bookedFlight && bookingFlightNumber === flight.flightNumber ? (
+                  <span>Booked!</span>
+                ) : isBooking && bookingFlightNumber === flight.flightNumber ? (
+                  <span className="loader"></span>
+                ) : (
+                  "Book Flight"
+                )}
               </button>
             </div>
             <button className="underline w-fit rounded-b-xl text-sm bg-primary-light text-accent-light py-3 px-5">

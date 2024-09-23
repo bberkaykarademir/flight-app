@@ -1,12 +1,18 @@
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import Link from "next/link";
 
 const FilterMyFlights = () => {
   return (
     <div className="bg-background-light w-full">
       <section className="wrapper py-4 flex items-center justify-between">
         <div className="flex items-center gap-4 text-sm font-semibold">
+          <Link href="/book-flight" className="mr-2 flex gap-2 items-center">
+            <FaArrowLeftLong />
+            <span>Back</span>
+          </Link>
           <span className="px-4 py-2 rounded border-2 border-border">
             Times
           </span>
