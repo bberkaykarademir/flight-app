@@ -13,27 +13,27 @@ const FilterMyFlights = () => {
             <FaArrowLeftLong />
             <span>Back</span>
           </Link>
-          <span className="px-4 py-2 rounded border-2 border-border">
+          <span className="hidden xl:block px-4 py-2 rounded border-2 border-border">
             Times
           </span>
-          <span className="px-4 py-2 rounded border-2 border-border">
+          <span className="hidden xl:block px-4 py-2 rounded border-2 border-border">
             Stops
           </span>
-          <span className="px-4 py-2 rounded border-2 border-border">
+          <span className="hidden xl:block px-4 py-2 rounded border-2 border-border">
             Airlines
           </span>
-          <span className="px-4 py-2 rounded border-2 border-border">
+          <span className="hidden xl:block px-4 py-2 rounded border-2 border-border">
             Airports
           </span>
-          <span className="px-4 py-2 rounded border-2 border-border">
+          <span className="hidden xl:block px-4 py-2 rounded border-2 border-border">
             Amenities
           </span>
-          <button className="flex items-center gap-2 ml-2">
+          <button className="hidden xl:flex items-center gap-2 ml-2">
             <span className="text-secondary">Edit Search</span>
             <FaChevronDown fill="#5493f7" className="w-3 h-3" />
           </button>
         </div>
-        <div className="flex items-center gap-7">
+        <div className="hidden sm:flex items-center gap-7 ">
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-1">
               <IoIosStar className="w-[14px] h-[14px" />

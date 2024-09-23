@@ -23,7 +23,7 @@ const MyFlights = () => {
   }, []);
 
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 text-sm md:text-base">
       {isLoading && (
         <div className="flex flex-col gap-4">
           <div className="skeleton bg-placeholder rounded-xl"></div>
@@ -35,11 +35,11 @@ const MyFlights = () => {
       {data && data.length === 0 && <p>No flights found</p>}
       {data &&
         data.map((flight: Flight) => (
-          <div className="flex justify-between items-center bg-background-light py-8 px-9 rounded shadow">
-            <div className="flex gap-6">
+          <div className="flex flex-col lg:flex-row justify-between items-center bg-background-light py-4 md:py-8 px-5 md:px-9 rounded shadow">
+            <div className="flex flex-col lg:flex-row items-center lg:items-stretch lg:gap-6">
               <div className="bg-placeholder w-10 h-10 rounded-full"></div>
               <div className="flex flex-col gap-4">
-                <div className="flex gap-2 items-center text-2xl">
+                <div className="flex gap-2 items-center text-xl md:text-2xl mx-auto lg:mx-0">
                   <span>{formatTo12Hour(flight.departureDateTime)}</span>
                   <div className="h-[2px] w-4 mt-1 bg-text"></div>
                   <span>
@@ -48,10 +48,10 @@ const MyFlights = () => {
                       : "Not specified"}
                   </span>
                 </div>
-                <div className="flex items-center">
-                  <div className="flex w-40 flex-col">
+                <div className="flex items-center text-xs sm:text-sm">
+                  <div className="flex w-32 sm:w-40 flex-col">
                     <span>{flight.airline}</span>
-                    <button className="flex items-center gap-2">
+                    <button className="flex items-center gap-1 md:gap-2">
                       <span className="text-secondary text-sm">
                         Flight Details
                       </span>
@@ -59,7 +59,7 @@ const MyFlights = () => {
                     </button>
                   </div>
                   <div className="flex items-center">
-                    <div className="flex flex-col w-28">
+                    <div className="flex flex-col w-20 sm:w-28">
                       <span>{flight.stops}</span>
                       <span className="text-text-light text-sm">1h 32m</span>
                     </div>
@@ -75,29 +75,29 @@ const MyFlights = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-2">
-              <div className="w-22 h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
-                <span className="font-bold text-lg">{flight.price}$</span>
+            <div className="flex gap-2 mt-3 lg:mt-0 flex-wrap justify-center sm:justify-stretch">
+              <div className="w-16 h-20 md:w-22 md:h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
+                <span className="font-bold text-base md:text-lg">{flight.price}$</span>
                 <span className="text-text-light font-semibold text-sm">
                   Price
                 </span>
               </div>
-              <div className="w-22 h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
-                <span className="font-bold text-lg">
+              <div className="w-16 h-20 md:w-22 md:h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
+                <span className="font-bold text-base md:text-lg">
                   {flight.visa ? "Yes" : "No"}
                 </span>
                 <span className="text-text-light font-semibold text-sm">
                   Visa
                 </span>
               </div>
-              <div className="w-22 h-26 bg-[#f5f5f6] rounded-lg"></div>
-              <div className="w-22 h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
-                <span className="text-text-light my-auto font-semibold text-sm">
+              <div className="hidden sm:block w-16 h-20 md:w-22 md:h-26 bg-[#f5f5f6] rounded-lg"></div>
+              <div className="w-16 h-20 md:w-22 md:h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
+                <span className="text-text-light text-center my-auto font-semibold text-sm">
                   {flight.roundTrip}
                 </span>
               </div>
-              <div className="w-22 h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
-                <span className="font-bold text-lg">{flight.belts || 0}</span>
+              <div className="w-16 h-20 md:w-22 md:h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
+                <span className="font-bold text-base md:text-lg">{flight.belts || 0}</span>
                 <span className="text-text-light font-semibold text-sm">
                   Belts
                 </span>

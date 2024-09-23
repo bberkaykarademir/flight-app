@@ -19,7 +19,7 @@ const SortMyFlights = () => {
   }, [sort]);
 
   return (
-    <section className="flex items-center justify-between">
+    <section className="flex items-center justify-between text-sm md:text-base">
       <div className="flex items-center gap-1">
         <span>Sort by:</span>
         <select
