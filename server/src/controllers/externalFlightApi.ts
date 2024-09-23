@@ -79,7 +79,10 @@ export async function fetchExternalFlightData(filters?: {
 
     if (filters?.sort !== "-scheduleTime") {
       params.sort = "+scheduleTime";
+    } else {
+      params.sort = "-scheduleTime";
     }
+
 
     if (filters?.fromDateTime) {
       params.fromDateTime = filters.fromDateTime;

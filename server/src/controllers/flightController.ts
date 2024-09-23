@@ -38,8 +38,14 @@ export async function getFlights(req: Request, res: Response) {
       toDateTime: req.query.toDateTime as string,
     });
 
-    const { departureCity, arrivalCity, roundTrip, airline, stops } =
-      req.query;
+    const {
+      departureCity,
+      arrivalCity,
+      roundTrip,
+      airline,
+      stops,
+      arrivalAmPm,
+    } = req.query;
 
     if ("flights" in externalData) {
       const enrichedFlights = (
@@ -81,12 +87,17 @@ export async function getFlights(req: Request, res: Response) {
       });
 
       const filteredFlights = enrichedFlights.filter((flight) => {
+        const flightArrivalDate = new Date(flight.arrivalDateTime);
+        flightArrivalDate.setHours(flightArrivalDate.getHours() - 1);
+        const flightHours = flightArrivalDate.getHours();
+        const flightAmPm = flightHours < 12 ? "AM" : "PM";
         return (
           (departureCity ? flight.departureCity === departureCity : true) &&
           (arrivalCity ? flight.arrivalCity === arrivalCity : true) &&
           (airline ? flight.airline === airline : true) &&
           (stops ? flight.stops === stops : true) &&
-          (roundTrip ? flight.roundTrip === roundTrip : true)
+          (roundTrip ? flight.roundTrip === roundTrip : true) &&
+          (arrivalAmPm ? flightAmPm === arrivalAmPm : true)
         );
       });
 
