@@ -44,12 +44,12 @@ const FilterFlightList = () => {
   }, [sort, arrivalAmPm, stops, airline]);
 
   return (
-    <section className="flex flex-col gap-6 pt-2 text-sm overflow-hidden">
-      <div className="flex flex-col gap-3">
+    <section className="flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-start lg:flex-col gap-4 sm:gap-6 pt-2 text-xs md:text-sm overflow-hidden">
+      <div className="flex items-center sm:items-stretch sm:flex-col gap-3">
         <span className="font-bold">Sort by</span>
         <select
           onChange={(e) => setSort(e.target.value)}
-          className="w-56 mx-1 h-9 flex inputWrapper-focus px-2 bg-background-light rounded-md"
+          className="w-40 lg:w-56 mx-1 h-9 flex inputWrapper-focus px-2 bg-background-light rounded-md"
         >
           {sortOptions.map((option, index) => (
             <option key={index} value={option.value}>
@@ -58,9 +58,9 @@ const FilterFlightList = () => {
           ))}
         </select>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2 sm:gap-3">
         <span className="font-bold">Arrival Time</span>
-        <ul className="flex flex-col gap-[10px]">
+        <ul className="flex flex-col gap-2 sm:gap-[10px]">
           <li className="flex items-center gap-2">
             <input
               type="radio"
@@ -89,9 +89,9 @@ const FilterFlightList = () => {
           </li>
         </ul>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2 sm:gap-3">
         <span className="font-bold">Stops</span>
-        <ul className="flex flex-col gap-[10px]">
+        <ul className="flex flex-col gap-2 sm:gap-[10px]">
           <li className="flex items-center gap-2">
             <input
               type="radio"
@@ -133,9 +133,9 @@ const FilterFlightList = () => {
           </li>
         </ul>
       </div>
-      <div className="flex flex-col gap-3 overflow-hidden">
+      <div className="flex flex-col gap-2 sm:gap-3 overflow-hidden">
         <span className="font-bold">Airlines Included</span>
-        <ul className="flex flex-col gap-[10px] overflow-y-auto">
+        <ul className="flex flex-col gap-2 sm:gap-[10px] overflow-y-auto max-h-20 lg:max-h-full ">
           {airlines.map((airlineItem, index) => (
             <li key={index} className="flex items-center justify-between">
               <div className="flex items-center gap-2">
