@@ -15,6 +15,7 @@ export interface Filters {
 export interface FiltersState {
   filters: Filters;
   setFilters: (filters: Partial<Filters>) => void;
+  resetFilters: () => void;
 }
 
 export const useFiltersStore = create<FiltersState>((set) => ({
@@ -34,6 +35,20 @@ export const useFiltersStore = create<FiltersState>((set) => ({
       filters: {
         ...state.filters,
         ...updatedFilters,
+      },
+    })),
+  resetFilters: () =>
+    set(() => ({
+      filters: {
+        sort: "lowestPrice",
+        departureCity: "",
+        arrivalCity: "",
+        fromDateTime: "",
+        toDateTime: "",
+        roundTrip: "",
+        airline: "",
+        stops: "",
+        arrivalAmPm: "",
       },
     })),
 }));

@@ -9,6 +9,11 @@ import { formatTo12Hour, getTimeDifference } from "@/app/utils/dateParser";
 
 const FlightList = () => {
   const filters = useFiltersStore((state) => state.filters);
+  const resetFilters = useFiltersStore((state) => state.resetFilters);
+
+  useEffect(() => {
+    resetFilters();
+  }, []);
 
   const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["flights", filters],
