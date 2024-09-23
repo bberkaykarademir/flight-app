@@ -18,6 +18,7 @@ export interface IFlight extends mongoose.Document {
   airline: string;
   price: number;
   stops: string;
+  roundTrip: string;
 }
 
 const FlightSchema = new Schema({
@@ -36,6 +37,7 @@ const FlightSchema = new Schema({
   airline: { type: String, required: true },
   price: { type: Number, required: true },
   stops: { type: String, required: true },
+  roundTrip: { type: String, required: true },
 });
 
 const Flight = mongoose.model<IFlight>("Flight", FlightSchema);

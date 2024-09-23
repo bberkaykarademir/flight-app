@@ -9,6 +9,7 @@ import morgan from "morgan";
 /* ROUTE IMPORTS */
 import externalFlightRoutes from "./routes/externalFlightRoutes";
 import flightsRoutes from "./routes/flightsRoutes";
+import myFlightsRoutes from "./routes/myFlightsRoutes";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(cors());
 /* ROUTES */
 app.use("/external", externalFlightRoutes); // http://localhost:8000/external
 app.use("/flights", flightsRoutes); // http://localhost:8000/flights
+app.use("/my-flights", myFlightsRoutes); // http://localhost:8000/myflights
 
 /* SERVER */
 
