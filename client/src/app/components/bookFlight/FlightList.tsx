@@ -33,7 +33,8 @@ const FlightList = () => {
           <div className="flex flex-col" key={flight.flightNumber}>
             <div className="relative flex flex-col gap-4 bg-background-light py-5 px-6 rounded-tl-xl rounded-r-xl">
               <h3 className="font-bold">
-                {flight.departureCity} - {flight.arrivalCity}
+                {flight.departureCity} - {flight.arrivalCity} (
+                {flight.flightNumber})
               </h3>
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">

@@ -120,12 +120,15 @@ const SearchFlight = () => {
           </div>
         </div>
       </div>
-      <button
-        onClick={() => showFlights()}
-        className="w-fit bg-primary text-text-inverse font-semibold px-4 py-[10px] rounded-md"
-      >
-        Show flights
-      </button>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => showFlights()}
+          className="w-fit bg-primary text-text-inverse font-semibold px-4 py-[10px] rounded-md"
+        >
+          Show flights
+        </button>
+        <span className="text-sm text-red-700">*Date range can be a maximum of 3 days.</span>
+      </div>
     </section>
   );
 };

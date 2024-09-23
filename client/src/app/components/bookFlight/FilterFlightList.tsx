@@ -66,24 +66,26 @@ const FilterFlightList = () => {
               type="radio"
               id="am"
               name="times"
+              checked={arrivalAmPm === "AM"}
               onClick={() =>
                 arrivalAmPm === "AM" ? setArrivalAmPm("") : setArrivalAmPm("AM")
               }
               onChange={() => {}}
             />
-            <label htmlFor="am">5:00 AM - 11:59 AM</label>
+            <label htmlFor="am">Before Midday (AM)</label>
           </li>
           <li className="flex items-center gap-2">
             <input
               type="radio"
               id="pm"
               name="times"
+              checked={arrivalAmPm === "PM"}
               onClick={() =>
                 arrivalAmPm === "PM" ? setArrivalAmPm("") : setArrivalAmPm("PM")
               }
               onChange={() => {}}
             />
-            <label htmlFor="pm">12:00 PM - 5:59 PM</label>
+            <label htmlFor="pm">After Midday (PM)</label>
           </li>
         </ul>
       </div>
