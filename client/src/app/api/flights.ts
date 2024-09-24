@@ -44,12 +44,10 @@ export const getFlights = async (params: FlightParams): Promise<Flight[]> => {
       filteredParams.sort = "+scheduleTime";
     }
 
-    const url =
-      process.env.NODE_ENV === "production"
-        ? "https://3.71.174.250:8000/flights"
-        : "http://3.71.174.250:8000/flights";
 
-    const response = await axios.get<Flight[]>(url, {
+
+    const response = await axios.get<Flight[]>(
+      "https://9bke6xuwy2.execute-api.eu-central-1.amazonaws.com/prod/flights", {
       params: filteredParams,
     });
     return response.data;
