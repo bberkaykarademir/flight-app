@@ -44,7 +44,7 @@ const FilterFlightList = () => {
   }, [sort, arrivalAmPm, stops, airline]);
 
   return (
-    <section className="flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-start lg:flex-col gap-4 sm:gap-6 pt-2 text-xs md:text-sm overflow-hidden">
+    <section className="flex flex-col sm:flex-row lg:overflow-y-auto justify-center sm:justify-between lg:justify-start lg:flex-col gap-4 sm:gap-6 pt-2 text-xs md:text-sm overflow-hidden">
       <div className="flex items-center sm:items-stretch sm:flex-col gap-3">
         <span className="font-bold">Sort by</span>
         <select
@@ -133,9 +133,9 @@ const FilterFlightList = () => {
           </li>
         </ul>
       </div>
-      <div className="flex flex-col gap-2 sm:gap-3 overflow-hidden">
+      <div className="flex flex-col gap-2 sm:gap-3 overflow-hidden lg:overflow-visible">
         <span className="font-bold">Airlines Included</span>
-        <ul className="flex flex-col gap-2 sm:gap-[10px] overflow-y-auto max-h-20 lg:max-h-full ">
+        <ul className="flex flex-col gap-2 sm:gap-[10px] overflow-y-auto lg:overflow-visible max-h-20 lg:max-h-full ">
           {airlines.map((airlineItem, index) => (
             <li key={index} className="flex items-center justify-between">
               <div className="flex items-center gap-2">

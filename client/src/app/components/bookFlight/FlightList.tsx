@@ -8,11 +8,12 @@ import { IoAirplaneSharp } from "react-icons/io5";
 import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu";
 import { formatTo12Hour, getTimeDifference } from "@/app/utils/dateParser";
 import { useRouter } from "next/navigation";
+
 const FlightList = () => {
   const router = useRouter();
   const filters = useFiltersStore((state) => state.filters);
   const resetFilters = useFiltersStore((state) => state.resetFilters);
-
+  
   useEffect(() => {
     resetFilters();
   }, []);
@@ -40,6 +41,18 @@ const FlightList = () => {
   });
 
   const [bookingFlightNumber, setBookingFlightNumber] = useState(-1);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (bookError && bookingFlightNumber !== -1) {
+      // Hata mesajını ayarla ve 1-2 saniye sonra kaldır
+      console.log("Error booking flight:", bookError);
+      setErrorMessage((bookError as any).response.data.message || "An error occurred.");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
+    }
+  }, [bookError, bookingFlightNumber]);
 
   return (
     <section className="flex flex-col gap-5 flex-grow overflow-y-auto">
@@ -51,10 +64,15 @@ const FlightList = () => {
       )}
       {error && <p>Error: Failed to fetch valid flight data</p>}
       {data && data.length === 0 && <p>No flights found</p>}
-      {data &&
+      {!error && data &&
         data.map((flight) => (
-          <div className="flex flex-col  text-sm md:text-base" key={flight.flightNumber}>
+          <div className="flex flex-col text-sm md:text-base" key={flight.flightNumber}>
             <div className="relative flex flex-col gap-4 bg-background-light py-2 md:py-5 px-3 md:px-6 rounded-tl-xl rounded-r-xl">
+              {bookingFlightNumber === flight.flightNumber && errorMessage && (
+                <div className="absolute top-2 right-2 bg-red-500 text-white text-xs p-1 rounded">
+                  {errorMessage}
+                </div>
+              )}
               <h3 className="font-bold">
                 {flight.departureCity} - {flight.arrivalCity} (
                 {flight.flightNumber})
@@ -115,7 +133,7 @@ const FlightList = () => {
                   setBookingFlightNumber(flight.flightNumber);
                   await book(flight);
                 }}
-                className="absolute  right-0 bottom-0 flex items-center justify-center rounded-br-xl rounded-tl-xl w-32 md:w-40 h-14 md:h-18 bg-primary text-text-inverse font-semibold"
+                className="absolute right-0 bottom-0 flex items-center justify-center rounded-br-xl rounded-tl-xl w-32 md:w-40 h-14 md:h-18 bg-primary text-text-inverse font-semibold"
               >
                 {bookedFlight && bookingFlightNumber === flight.flightNumber ? (
                   <span>Booked!</span>
