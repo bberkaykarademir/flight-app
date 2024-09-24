@@ -35,10 +35,10 @@ const MyFlights = () => {
       {data && data.length === 0 && <p>No flights found</p>}
       {data &&
         data.map((flight: Flight) => (
-          <div className="flex flex-col lg:flex-row justify-between items-center bg-background-light py-4 md:py-8 px-5 md:px-9 rounded shadow">
+          <div key={flight.flightNumber} className="flex flex-col lg:flex-row justify-between items-center bg-background-light py-4 md:py-8 px-5 md:px-9 rounded shadow">
             <div className="flex flex-col lg:flex-row items-center lg:items-stretch lg:gap-6">
               <div className="bg-placeholder w-10 h-10 rounded-full"></div>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-6 lg:gap-4">
                 <div className="flex gap-2 items-center text-xl md:text-2xl mx-auto lg:mx-0">
                   <span>{formatTo12Hour(flight.departureDateTime)}</span>
                   <div className="h-[2px] w-4 mt-1 bg-text"></div>
@@ -75,7 +75,7 @@ const MyFlights = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-2 mt-3 lg:mt-0 flex-wrap justify-center sm:justify-stretch">
+            <div className="flex gap-2 mt-6 lg:mt-0 flex-wrap justify-center sm:justify-stretch">
               <div className="w-16 h-20 md:w-22 md:h-26 flex flex-col items-center justify-between bg-background-light border-2 border-[#dcdcdc] pt-3 pb-4 rounded-lg">
                 <span className="font-bold text-base md:text-lg">{flight.price}$</span>
                 <span className="text-text-light font-semibold text-sm">

@@ -87,3 +87,8 @@ npm run dev
 
 - The Schiphol Flight API was not sufficient for the UI's filters and flight data, so I integrated it with my `GET /flights` API to enrich the data and expand the filter options.
 - The `.env` file was removed from `.gitignore` for easier sharing.
+
+## App's Routes
+
+- /book-flight
+- /my-flights

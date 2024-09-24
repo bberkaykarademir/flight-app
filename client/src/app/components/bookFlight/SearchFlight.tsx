@@ -88,7 +88,7 @@ const SearchFlight = () => {
           <div className="inputWrapper inputWrapper-focus flex items-center pl-3 pr-1 gap-2 flex-1 border-2 border-[#dcdcdc] sm:sm:rounded-r-full">
             <FaPlaneArrival fill="#501a93" className="w-5 h-5" />
             <select
-              className="w-full h-full py-2 outline-none rounded-r-xl"
+              className="w-full h-full py-2 outline-none lg:rounded-r-xl"
               defaultValue={""}
               onChange={(e) => setArrivalCity(e.currentTarget.value)}
             >
