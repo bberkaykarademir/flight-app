@@ -33,7 +33,7 @@ app.get("/health", (req, res) => {
   res.send("Server is running.");
 });
 
-const port = process.env.PORT || 8001;
+const port = Number(process.env.PORT) || 8001;
 const dbUri = process.env.MONGO_URI as string;
 
 if (!dbUri) {
@@ -44,7 +44,7 @@ if (!dbUri) {
 mongoose
   .connect(dbUri)
   .then(async () => {
-    app.listen(port, () => console.log(`Server Port: ${port}`));
+    app.listen(port, "0.0.0.0", () => console.log(`Server Port: ${port}`));
   })
   .catch((error) => {
     console.log(`${error} - Database connection failed`);
