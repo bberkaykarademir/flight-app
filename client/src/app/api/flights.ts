@@ -44,12 +44,14 @@ export const getFlights = async (params: FlightParams): Promise<Flight[]> => {
       filteredParams.sort = "+scheduleTime";
     }
 
-    const response = await axios.get<Flight[]>(
-      "http://3.71.174.250:8000/flights",
-      {
-        params: filteredParams,
-      }
-    );
+    const url =
+      process.env.NODE_ENV === "production"
+        ? "https://3.71.174.250:8000/flights"
+        : "http://3.71.174.250:8000/flights";
+
+    const response = await axios.get<Flight[]>(url, {
+      params: filteredParams,
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching flights:", error);
