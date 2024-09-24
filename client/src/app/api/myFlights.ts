@@ -3,7 +3,7 @@ import { Flight } from "./flights";
 
 export const getFlights = async (sort: string) => {
   try {
-    const response = await axios.get("http://localhost:8000/my-flights", {
+    const response = await axios.get("http://3.71.174.250:8000/my-flights", {
       params: {
         sort,
       },
@@ -18,7 +18,7 @@ export const getFlights = async (sort: string) => {
 export const bookFlight = async (flight: Flight) => {
   try {
     const response = await axios.post(
-      "http://localhost:8000/my-flights",
+      "http://3.71.174.250:8000/my-flights",
       flight
     );
     return response.data;

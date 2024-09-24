@@ -45,7 +45,7 @@ export const getFlights = async (params: FlightParams): Promise<Flight[]> => {
     }
 
     const response = await axios.get<Flight[]>(
-      "http://localhost:8000/flights",
+      "http://3.71.174.250:8000/flights",
       {
         params: filteredParams,
       }
