@@ -1,0 +1,18 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# Build output
+.next
+out
+
+# Logs
+logs
+*.log
+
+# Git files
+.git
+.gitignore
+
+# Environment variables
+.env
